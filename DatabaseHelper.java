@@ -27,6 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String BOX_COL_4 = "Quantity";
     private static final String BOX_COL_5 = "UploadedTime";
     private static final String BOX_COL_6 = "WithdrawalTime";
+    private static final String BOX_COL_7 = "CompanyID";
 
     private static final String ORDER_TABLE_NAME = "Orders";
     private static final String ORDER_COL_0 = "ID";
@@ -50,12 +51,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + USER_COL_6 + " TEXT)"                                 // Email
         );
         db.execSQL(
-                "CREATE TABLE " + BOX_TABLE_NAME + " ("
-                + BOX_COL_0 + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + BOX_COL_1 + " TEXT, "
-                + BOX_COL_2 + " TEXT, "
-                + BOX_COL_3 + " FLOAT, "
-                + BOX_COL_4 + " INTEGER)"
+                "CREATE TABLE " + BOX_TABLE_NAME + " ("                 // Boxes
+                + BOX_COL_0 + " INTEGER PRIMARY KEY AUTOINCREMENT, "    // ID
+                + BOX_COL_1 + " TEXT, "                                 // Name
+                + BOX_COL_2 + " TEXT, "                                 // Description
+                + BOX_COL_3 + " TEXT, "                                 // Price REAL
+                + BOX_COL_4 + " TEXT, "                              // Quantity INTEGER
+                + BOX_COL_5 + " TEXT, "                                 // Uploaded time
+                + BOX_COL_6 + " TEXT, "                                 // Withdrawal time
+                + BOX_COL_7 + " INTEGER, "                              // Company ID
+                + "FOREIGN KEY (" + BOX_COL_7 + ") REFERENCES " + USER_TABLE_NAME + " (" + USER_COL_0 + "))"
         );
         db.execSQL(
                 "CREATE TABLE " + ORDER_TABLE_NAME + " ("
@@ -115,28 +120,71 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean insertData(String name, String description, float price, int quantity) {
-        SQLiteDatabase db = this.getReadableDatabase();
+    public boolean addBox(String name, String description, String price, String quantity, String uTime, String wTime, int companyID) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(BOX_COL_1, name);
         contentValues.put(BOX_COL_2, description);
         contentValues.put(BOX_COL_3, price);
         contentValues.put(BOX_COL_4, quantity);
-        long result = db.insert(BOX_TABLE_NAME, null, contentValues);
+        contentValues.put(BOX_COL_5, uTime);
+        contentValues.put(BOX_COL_6, wTime);
+        contentValues.put(BOX_COL_7, companyID);
+        long res = db.insert(BOX_TABLE_NAME, null, contentValues);
         db.close();
-        if (result == -1)
+        if (res == -1)
             return false;
         else
             return true;
     }
 
-    public Cursor getAllData() {
+    public boolean addOrder(int boxID, int userID) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ORDER_COL_1, boxID);
+        contentValues.put(ORDER_COL_2, userID);
+        long res = db.insert(ORDER_TABLE_NAME, null, contentValues);
+        db.close();
+        if (res == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public Cursor getBoxData() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + BOX_TABLE_NAME, null);
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery("SELECT * FROM " + BOX_TABLE_NAME, null);
+        }
+        return cursor;
+    }
+
+    public Cursor getUserData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + USER_TABLE_NAME, null);
+        return cursor;
+    }
+
+    public Cursor getOrderData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + ORDER_TABLE_NAME, null);
         return cursor;
     }
 
     public String getUserID(String username) {
+        String sql = "SELECT * FROM Users WHERE Username='" + username +"'";
+        String res = "no password";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null) {
+            res = cursor.getString(2);
+        }
+        db.close();
+        return res;
+
         /*
         int id;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -148,7 +196,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 return id = cursor.getInt(0);
             }
         }
-        return null;*/
+        return null;
 
         SQLiteDatabase db = this.getWritableDatabase();
         String[] columns = new String[]{ USER_COL_0, USER_COL_1, USER_COL_2, USER_COL_3, USER_COL_4, USER_COL_5, USER_COL_6 };
@@ -164,5 +212,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
         return resID;
+        */
+    }
+
+    public Integer deleteData (String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int res = db.delete(BOX_TABLE_NAME, "ID = ?", new String[] {id});
+        db.close();
+        return res;
+    }
+
+    public Integer updateData(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("a", "a");
+        contentValues.put("a", "a");
+        int res = db.update(BOX_TABLE_NAME, contentValues, "ID = ?", new String[] {"ID"});
+        db.close();
+        return res;
     }
 }
