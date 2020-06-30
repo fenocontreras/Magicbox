@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CheckBoxesActivity"></activity>
+        <activity android:name=".CheckOrders"></activity>
+        <activity android:name=".MyOrdersActivity" />
+        <activity android:name=".DisplayBoxActivity" />
+        <activity android:name=".CreateBoxesActivity" />
+        <activity android:name=".CheckBoxesActivity" />
         <activity android:name=".ManageBoxesActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".LoginActivity">
