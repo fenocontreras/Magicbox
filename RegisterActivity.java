@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -15,7 +16,7 @@ public class RegisterActivity extends AppCompatActivity {
     DatabaseHelper db;
     Switch swIsCompany;
     EditText etName, etSurname, etEmail, etUsername, etPassword, etPassword2;
-    Button btnRegister;
+    ImageView imgRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +46,8 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        btnRegister = (Button) findViewById(R.id.btn_register);
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        imgRegister = (ImageView) findViewById(R.id.img_register);
+        imgRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = etName.getText().toString().trim();
