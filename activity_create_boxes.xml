@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAEAEA"
+    tools:context=".CreateBoxesActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/background_picture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/profile_picture" />
+
+        <TextView
+            android:id="@+id/tv_logged_as"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="@string/logged_in_as"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/tv_logged_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Nombre Apellido"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_logged_as"
+            app:layout_constraintTop_toBottomOf="@+id/tv_logged_as" />
+
+        <TextView
+            android:id="@+id/tv_home_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Create box"
+            android:textColor="#ffffff"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+    </android.support.constraint.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/et_box_name"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/text_bar_picture"
+        android:drawableStart="@drawable/mini_box_picture"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="@string/action_enter_box_name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <EditText
+        android:id="@+id/et_box_description"
+        android:layout_width="350dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/desc_bar_picture"
+        android:maxLines="4"
+        android:ems="10"
+        android:hint="@string/action_enter_box_description"
+        android:inputType="textPersonName"
+        android:gravity="top|start"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="12dp"
+        app:layout_constraintStart_toStartOf="@id/et_box_name"
+        app:layout_constraintTop_toBottomOf="@id/et_box_name" />
+
+    <EditText
+        android:id="@+id/et_box_price"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:background="@drawable/text_bar_picture"
+        android:drawableStart="@drawable/price_picture"
+        android:drawablePadding="12dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/action_enter_box_price"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="@id/et_box_description"
+        app:layout_constraintTop_toBottomOf="@id/et_box_description" />
+
+    <EditText
+        android:id="@+id/et_box_quantity"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@drawable/text_bar_picture"
+        android:drawableStart="@drawable/quantity_picture"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="@string/action_enter_box_quantity"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/et_box_description"
+        app:layout_constraintTop_toTopOf="@+id/et_box_price" />
+
+    <EditText
+        android:id="@+id/et_box_withdrawal"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/text_bar_picture"
+        android:drawableStart="@drawable/time_picture"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="@string/action_enter_box_time"
+        android:inputType="time"
+        app:layout_constraintStart_toStartOf="@+id/et_box_price"
+        app:layout_constraintTop_toBottomOf="@+id/et_box_price" />
+
+    <ImageView
+        android:id="@+id/img_create"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_box_withdrawal"
+        app:srcCompat="@drawable/create_button" />
+
+</android.support.constraint.ConstraintLayout>
