@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Magic Box</string>
+    <string name="box_name">Name</string>
+    <string name="box_description">Description</string>
+    <string name="box_price">Price</string>
+    <string name="box_quantity">Quantity</string>
+    <string name="box_create">Create Box</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+
+    <!-- Login -->
+    <string name="prompt_welcome">Welcome</string>
+    <string name="action_insert_username">Insert username</string>
+    <string name="action_insert_password">Insert password</string>
+    <string name="action_log_in">Login</string>
+    <string name="action_sign_in">Sign up</string>
+
+    <!-- Sign un -->
+    <string name="prompt_register">Sign Up</string>
+    <string name="prompt_name">Name</string>
+    <string name="prompt_surname">Surname</string>
+    <string name="prompt_email">Email address</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_confirm_password">Confirm password</string>
+    <string name="prompt_is_company">I am a company</string>
+    <string name="action_register">Register</string>
+
+    <!-- Home (Company) -->
+    <string name="logged_in_as">Logged in as: </string>
+    <string name="manage_boxes">Manage boxes</string>
+    <string name="check_boxes">Check boxes</string>
+
+    <!-- Manage boxes -->
+    <string name="action_create_new_box">Create new box</string>
+
+    <!-- Create boxes -->
+    <string name="action_enter_box_name">Enter a name for your box.</string>
+    <string name="action_enter_box_description">Describe what is your box about.</string>
+    <string name="action_enter_box_price">$</string>
+    <string name="action_enter_box_quantity">0</string>
+    <string name="action_enter_box_time">Enter a withdrawal time limit</string>
+
+</resources>
