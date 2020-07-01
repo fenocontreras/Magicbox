@@ -1,5 +1,6 @@
 package com.kumiho.magicbox;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -89,6 +90,37 @@ public class CheckOrders extends AppCompatActivity implements CheckOrdersAdapter
 
     @Override
     public void OnOrderClick(int position) {
+        String boxName = box_name.get(position);
+        String boxBuyer = box_buyer.get(position);
 
+        String boxID = "-1";
+        String buyerID = "-1";
+
+        Cursor boxCursor = db.getBoxData();
+        if(boxCursor.getCount() != 0) {
+            for (boxCursor.moveToFirst(); !boxCursor.isAfterLast(); boxCursor.moveToNext()) {
+                if (boxCursor.getString(1).equals(boxName)) {
+                    boxID = boxCursor.getString(0);
+                }
+            }
+        }
+        boxCursor.close();
+
+        Cursor userCursor = db.getUserData();
+        if(userCursor.getCount() != 0) {
+            for (userCursor.moveToFirst(); !userCursor.isAfterLast(); userCursor.moveToNext()) {
+                String buyer = userCursor.getString(4) + " " + userCursor.getString(5);
+                if (buyer.equals(boxBuyer)) {
+                    buyerID = userCursor.getString(0);
+                }
+            }
+        }
+        userCursor.close();
+
+        Integer res = db.deleteOrder(boxID, buyerID);
+        Intent intent = getIntent();
+        intent.putExtra("USER_ID", userID);
+        finish();
+        startActivity(intent);
     }
 }
