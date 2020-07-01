@@ -222,6 +222,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    public Integer deleteOrder (String boxID, String buyerID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int res = db.delete(ORDER_TABLE_NAME, "BoxID = ? AND UserID = ?", new String[] {boxID,buyerID});
+        db.close();
+        return res;
+    }
+
     public Integer updateData(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
